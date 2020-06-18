@@ -7,7 +7,7 @@ public class GameLogic {
 	private boolean music = false;
 	private int play_rounds = 5;
 	private Player[] player;
-	private int player_id = 0, player_count;
+	private int player_id = 1, player_count = 0;
 
 	public void createPlayers(int players) {
 		player_count = players;
@@ -20,15 +20,15 @@ public class GameLogic {
 	}
 
 	public int getCurrentPlayer() {
-		int local_player_id = player_id;
-		if (local_player_id == player_count) {
+		if (player_id == player_count) {
 			player_id = 1;
-			setPlayedRound();
-			return local_player_id;
+			return player_count;
 		} else {
+			int send = player_id;
 			player_id++;
-			return player_id;
+			return send;
 		}
+
 	}
 
 	public Player[] getPlayerArray() {
@@ -53,7 +53,6 @@ public class GameLogic {
 		} else {
 			rounds--;
 		}
-		
 
 	}
 

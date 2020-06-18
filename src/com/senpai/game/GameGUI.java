@@ -22,7 +22,8 @@ public class GameGUI extends JFrame implements ActionListener {
 	int rounds_left = Main.game.getPlayRounds();
 	int rounds_counter = Main.game.getRounds();
 	int localscore = 0;
-
+	int roundsplayed = 0;
+	
 	public GameGUI(int _playerid, BackgroundScoreGUI gui) {
 
 		gamegui = gui;
@@ -71,15 +72,13 @@ public class GameGUI extends JFrame implements ActionListener {
 
 	private void Endgame() {
 		Main.game.getPlayerArray()[playerid].addScore(localscore);
-		/*
-		 * for (int i = 1; i < Main.game.getPlayerArray().length; i++) {
-		 * System.out.println(Main.game.getPlayerArray()[i].getScore() +
-		 * " | "+Main.game.getPlayerArray()[i].getPlayerId()); }
-		 */
-		if (playerid == Main.game.getPlayerArray()[Main.game.getPlayerArray().length-1].getPlayerId()) {
+		if (playerid == Main.game.getPlayerArray()[Main.game.getPlayerArray().length - 1].getPlayerId()) {
+			Main.game.setPlayedRound();
 			gamegui.UpdateText();
+	
 
 		}
+		gamegui.showScoresRound(playerid);
 		gamegui.setEnabled(true);
 		this.dispose();
 	}
@@ -90,7 +89,9 @@ public class GameGUI extends JFrame implements ActionListener {
 
 			rounds_left--;
 			dice_points = Main.game.getRandom();
-
+			
+			Main.game.getPlayerArray()[playerid].getDiceScoreArray()[roundsplayed] = dice_points;
+			roundsplayed++;
 			if (Main.game.isNotOdd(dice_points)) {
 
 				localscore += dice_points;

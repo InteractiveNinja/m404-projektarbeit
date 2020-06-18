@@ -51,14 +51,15 @@ public class BackgroundScoreGUI extends JFrame implements ActionListener {
 	}
 
 	public void UpdateText() {
-		showScoresRound();
+
 		rounds_label.setText("Übrige Runden: " + Main.game.getRounds());
+
 	}
 
-	private void showScoresRound() {
-		System.out.println("Runden Scoreboard wird angezeigt!");
-		RoundPanel panel = new RoundPanel(); // neues Panel pro Runde
-		panel.setBounds(0, pannel_y, 350, 60);
+	public void showScoresRound(int plyid) {
+
+		RoundPanel panel = new RoundPanel(plyid); // neues Panel pro Runde
+		panel.setBounds(0, pannel_y, 350, 30);
 		pannel_y += 30; // y-Position des nächsten Runden Panels
 		pnl1.add(panel); // zum scrollbaren Panel hinzufügen
 
