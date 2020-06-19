@@ -118,7 +118,13 @@ public class GameLogic extends JFrame {
 				_id = player[i].getPlayerId();
 			}
 		}
-		msg.showMessageDialog(null, "Spieler " + _id + " hat gewonnen mit einem Score von: " + _score + "!");
+		if(!(_score < 1)) {
+			msg.showMessageDialog(null, "Spieler " + _id + " hat gewonnen mit einem Score von: " + _score + "!");
+			
+		}else {
+			msg.showMessageDialog(null, "Es gibt keine Gewinner");
+				
+		}
 		System.exit(0);
 	}
 
