@@ -35,6 +35,9 @@ public class BackgroundScoreGUI extends JFrame implements ActionListener {
 	}
 
 	void Elements() {
+		if(Main.game.getMusic()) {
+			Main.game.startMusic();
+		}
 
 		rounds_label.setText("Übrige Runden: " + Main.game.getRounds());
 		rounds_label.setBounds(130, 10, 120, 30);
