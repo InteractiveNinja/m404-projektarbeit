@@ -18,7 +18,7 @@ public class BackgroundScoreGUI extends JFrame implements ActionListener {
 	private JPanel pnl1 = new JPanel(); // Panel, welches andere Panels aufnimmt
 	private JScrollPane scrollpane = new JScrollPane(pnl1, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-	int pannel_y = 30;
+	int pannel_y = 0;
 	int currentplayer = Main.game.getCurrentPlayer();
 
 	public BackgroundScoreGUI() {
@@ -52,20 +52,21 @@ public class BackgroundScoreGUI extends JFrame implements ActionListener {
 
 	public void UpdateText() {
 
-		rounds_label.setText("Übrige Runden: " + Main.game.getRounds());
-
+		/*rounds_label.setText("Übrige Runden: " + Main.game.getRounds());
+		this.repaint();*/
 	}
 
 	public void showScoresRound(int plyid) {
 
 		RoundPanel panel = new RoundPanel(plyid); // neues Panel pro Runde
-		panel.setBounds(0, pannel_y, 350, 30);
+		panel.setBounds(0, pannel_y, 450, 30);
 		pannel_y += 30; // y-Position des nächsten Runden Panels
 		pnl1.add(panel); // zum scrollbaren Panel hinzufügen
-
+		
 		this.repaint();
 
 	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

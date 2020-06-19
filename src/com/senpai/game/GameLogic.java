@@ -1,6 +1,11 @@
 package com.senpai.game;
 
-public class GameLogic {
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+public class GameLogic extends JFrame {
+
+	private JOptionPane msg = new JOptionPane();
 
 	private int rounds = 0;
 	private int max_throws = 5;
@@ -49,7 +54,7 @@ public class GameLogic {
 
 	public void setPlayedRound() {
 		if (rounds == 1) {
-			System.out.println("Ende");
+			endGame();
 		} else {
 			rounds--;
 		}
@@ -64,14 +69,11 @@ public class GameLogic {
 		return music;
 	}
 
-	int getRandom() {
-
-		int random = (int) (Math.random() * 6 + 1);
-
-		return random;
+	public int getRandom() {
+		return (int) (Math.random() * 6 + 1);
 	}
 
-	boolean isNotOdd(int i) {
+	public boolean isNotOdd(int i) {
 
 		if ((i % 2) == 0) {
 			return true;
@@ -80,6 +82,19 @@ public class GameLogic {
 			return false;
 		}
 
+	}
+
+	private void endGame() {
+		int _id = 0;
+		int _score = 0;
+		for (int i = 1; i < player.length; i++) {
+			if (_score < player[i].getScore()) {
+				_score = player[i].getScore();
+				_id = player[i].getPlayerId();
+			}
+		}
+		msg.showMessageDialog(null, "Spieler " + _id + " hat gewonnen mit einem Score von: " + _score + "!");
+		System.exit(0);
 	}
 
 }

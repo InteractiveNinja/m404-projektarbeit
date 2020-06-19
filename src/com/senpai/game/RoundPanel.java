@@ -6,8 +6,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class RoundPanel extends JPanel {
-
-	int x_cord = 10;
 	
 	public RoundPanel(int playerid) {
 		this.setLayout(null);
@@ -19,11 +17,10 @@ public class RoundPanel extends JPanel {
 		}
 		scoresText = scoresText + " , Zeitiger Score " + p.getScore();
 		p.resetDiceScore();
-		
 		lbl1.setText(scoresText);
-		lbl1.setBounds(0, 0, 300, 30);
+		lbl1.setBounds(10, 0, 300, 30);
 		add(lbl1);
-		x_cord += 40;
+
 
 		this.setBackground(Color.LIGHT_GRAY);
 
