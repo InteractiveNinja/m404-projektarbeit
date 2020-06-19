@@ -98,6 +98,7 @@ public class GameGUI extends JFrame implements ActionListener {
 
 			} else {
 				localscore = 0;
+				Main.game.getPlayerArray()[playerid].killDiceScore();
 				msg.showMessageDialog(null, "Du hast " + dice_points + " Gewürfelt! Runde wird beendet");
 				Endgame();
 

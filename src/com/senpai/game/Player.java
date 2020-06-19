@@ -31,6 +31,9 @@ public class Player {
 	public void resetDiceScore() {
 		diceScores = new int[5];
 	}
+	public void killDiceScore() {
+		diceScores = null;
+	}
 	
 
 }
