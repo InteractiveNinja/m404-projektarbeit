@@ -15,7 +15,7 @@ public class BackgroundScoreGUI extends JFrame implements ActionListener {
 	JButton dice = new JButton();
 	JLabel rounds_label = new JLabel();
 	JOptionPane msg = new JOptionPane();
-	private JPanel pnl1 = new JPanel(); // Panel, welches andere Panels aufnimmt
+	private JPanel pnl1 = new JPanel();
 	private JScrollPane scrollpane = new JScrollPane(pnl1, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	int pannel_y = 0;
@@ -24,18 +24,18 @@ public class BackgroundScoreGUI extends JFrame implements ActionListener {
 	public BackgroundScoreGUI() {
 
 		setLayout(null);
-
+		pnl1.setLayout(null);
+		Elements();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		setSize(450, 500);
 		setTitle("Würfelspiel");
 		setVisible(true);
-		Elements();
 
 	}
 
 	void Elements() {
-		if(Main.game.getMusic()) {
+		if (Main.game.getMusic()) {
 			Main.game.startMusic();
 		}
 
@@ -54,9 +54,7 @@ public class BackgroundScoreGUI extends JFrame implements ActionListener {
 	}
 
 	public void UpdateText() {
-
-		/*rounds_label.setText("Übrige Runden: " + Main.game.getRounds());
-		this.repaint();*/
+		rounds_label.setText("Übrige Runden: " + Main.game.getRounds());
 	}
 
 	public void showScoresRound(int plyid) {
@@ -65,11 +63,8 @@ public class BackgroundScoreGUI extends JFrame implements ActionListener {
 		panel.setBounds(0, pannel_y, 450, 30);
 		pannel_y += 30; // y-Position des nächsten Runden Panels
 		pnl1.add(panel); // zum scrollbaren Panel hinzufügen
-		
 		this.repaint();
-
 	}
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
