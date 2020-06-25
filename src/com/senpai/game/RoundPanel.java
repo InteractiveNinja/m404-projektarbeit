@@ -7,9 +7,11 @@ import javax.swing.JPanel;
 
 public class RoundPanel extends JPanel {
 
+	private GameLogic logic = Main.game;
+
 	public RoundPanel(int playerId) {
 		this.setLayout(null);
-		Player playerArray = Main.game.getPlayerArray()[playerId];
+		Player playerArray = logic.getPlayerArray()[playerId];
 		JLabel label = new JLabel();
 		if (playerArray.getDiceScoreArray() != null) {
 			String scoresText = "Spieler " + playerArray.getPlayerId() + " ";
@@ -25,8 +27,8 @@ public class RoundPanel extends JPanel {
 			this.setBackground(Color.LIGHT_GRAY);
 		} else {
 			playerArray.resetDiceScore();
-			label.setText("Spieler " + playerArray.getPlayerId()
-					+ " hat eine Ungerade Zahl gewürfelt, Score:" + playerArray.getScore());
+			label.setText("Spieler " + playerArray.getPlayerId() + " hat eine Ungerade Zahl gewürfelt, Score:"
+					+ playerArray.getScore());
 			label.setBounds(10, 0, 300, 30);
 			add(label);
 

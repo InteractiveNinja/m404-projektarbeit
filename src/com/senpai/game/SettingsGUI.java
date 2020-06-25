@@ -18,6 +18,7 @@ public class SettingsGUI extends JFrame implements ActionListener {
 	private JTextField rounds = new JTextField();
 	private JLabel playercount_label = new JLabel();
 	private JTextField playercount = new JTextField();
+	private BackgroundScoreGUI gui;
 	public SettingsGUI() {
 
 		setLayout(null);
@@ -27,12 +28,12 @@ public class SettingsGUI extends JFrame implements ActionListener {
 		setSize(400, 480);
 		setTitle("Einstellungen");
 		setVisible(true);
-		Elements();
+		elements();
 		
 
 	}
 
-	private void Elements() {
+	private void elements() {
 		
 		
 		
@@ -69,7 +70,7 @@ public class SettingsGUI extends JFrame implements ActionListener {
 					Main.game.setRounds(Integer.parseInt(rounds.getText()));
 					Main.game.setMusic(music.isSelected());
 					Main.game.createPlayers(Integer.parseInt(playercount.getText()));
-					new BackgroundScoreGUI();
+					gui = new BackgroundScoreGUI();
 					JOptionPane.showMessageDialog(null, "Spiel wird gestartet!");
 					
 				} catch (Exception e2) {

@@ -17,4 +17,4 @@ So nen Spiel was in Java entwicklet worden ist mit hilfe der JFrame Library, die
 
 ## UML Diagramm:
 
-Kommt bald..
+![UML Diagramm](Diagramm.png)

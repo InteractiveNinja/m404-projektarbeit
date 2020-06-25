@@ -11,6 +11,8 @@ import javax.swing.JScrollPane;
 
 
 public class BackgroundScoreGUI extends JFrame implements ActionListener {
+	
+	private GameLogic logic = Main.game;
 
 	private JButton dice = new JButton();
 	private JLabel roundsLabel = new JLabel();
@@ -18,7 +20,9 @@ public class BackgroundScoreGUI extends JFrame implements ActionListener {
 	private JScrollPane scrollPane = new JScrollPane(backgroundPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	private int pannelY = 0;
-	private int currentPlayer = Main.game.getCurrentPlayer();
+	private int currentPlayer = logic.getCurrentPlayer();
+	private GameGUI gui;
+	private RoundPanel panel;
 
 	public BackgroundScoreGUI() {
 
@@ -34,11 +38,11 @@ public class BackgroundScoreGUI extends JFrame implements ActionListener {
 	}
 
 	private void elements() {
-		if (Main.game.getMusic()) {
-			Main.game.startMusic();
+		if (logic.getMusic()) {
+			logic.startMusic();
 		}
 
-		roundsLabel.setText("Übrige Runden: " + Main.game.getRounds());
+		roundsLabel.setText("Übrige Runden: " + logic.getRounds());
 		roundsLabel.setBounds(130, 10, 120, 30);
 		add(roundsLabel);
 
@@ -53,12 +57,12 @@ public class BackgroundScoreGUI extends JFrame implements ActionListener {
 	}
 
 	public void updateText() {
-		roundsLabel.setText("Übrige Runden: " + Main.game.getRounds());
+		roundsLabel.setText("Übrige Runden: " + logic.getRounds());
 	}
 
-	public void showScoresRound(int plyid) {
+	public void showScoresRound(int playerId) {
 
-		RoundPanel panel = new RoundPanel(plyid); // neues Panel pro Runde
+		panel = new RoundPanel(playerId); // neues Panel pro Runde
 		panel.setBounds(0, pannelY, 450, 30);
 		pannelY += 30; // y-Position des nächsten Runden Panels
 		backgroundPanel.add(panel); // zum scrollbaren Panel hinzufügen
@@ -68,8 +72,8 @@ public class BackgroundScoreGUI extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == dice) {
-			new GameGUI(currentPlayer, this);
-			currentPlayer = Main.game.getCurrentPlayer();
+			gui = new GameGUI(currentPlayer, this);
+			currentPlayer = logic.getCurrentPlayer();
 
 			this.setEnabled(false);
 
