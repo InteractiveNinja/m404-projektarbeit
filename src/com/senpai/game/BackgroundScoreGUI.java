@@ -6,20 +6,19 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+
 public class BackgroundScoreGUI extends JFrame implements ActionListener {
 
-	JButton dice = new JButton();
-	JLabel roundsLabel = new JLabel();
-	JOptionPane msg = new JOptionPane();
+	private JButton dice = new JButton();
+	private JLabel roundsLabel = new JLabel();
 	private JPanel backgroundPanel = new JPanel();
 	private JScrollPane scrollPane = new JScrollPane(backgroundPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-	int pannelY = 0;
-	int currentPlayer = Main.game.getCurrentPlayer();
+	private int pannelY = 0;
+	private int currentPlayer = Main.game.getCurrentPlayer();
 
 	public BackgroundScoreGUI() {
 
@@ -34,7 +33,7 @@ public class BackgroundScoreGUI extends JFrame implements ActionListener {
 
 	}
 
-	void elements() {
+	private void elements() {
 		if (Main.game.getMusic()) {
 			Main.game.startMusic();
 		}
@@ -69,7 +68,7 @@ public class BackgroundScoreGUI extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == dice) {
-			GameGUI window = new GameGUI(currentPlayer, this);
+			new GameGUI(currentPlayer, this);
 			currentPlayer = Main.game.getCurrentPlayer();
 
 			this.setEnabled(false);

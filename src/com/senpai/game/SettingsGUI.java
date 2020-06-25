@@ -12,14 +12,12 @@ import javax.swing.JTextField;
 
 public class SettingsGUI extends JFrame implements ActionListener {
 	
-	JButton finish = new JButton();
-	JCheckBox music = new JCheckBox();
-	JLabel rounds_label = new JLabel();
-	JTextField rounds = new JTextField();
-	JLabel playercount_label = new JLabel();
-	JTextField playercount = new JTextField();
-	JOptionPane msg = new JOptionPane();
-
+	private JButton finish = new JButton();
+	private JCheckBox music = new JCheckBox();
+	private JLabel rounds_label = new JLabel();
+	private JTextField rounds = new JTextField();
+	private JLabel playercount_label = new JLabel();
+	private JTextField playercount = new JTextField();
 	public SettingsGUI() {
 
 		setLayout(null);
@@ -72,17 +70,17 @@ public class SettingsGUI extends JFrame implements ActionListener {
 					Main.game.setMusic(music.isSelected());
 					Main.game.createPlayers(Integer.parseInt(playercount.getText()));
 					new BackgroundScoreGUI();
-					msg.showMessageDialog(null, "Spiel wird gestartet!");
+					JOptionPane.showMessageDialog(null, "Spiel wird gestartet!");
 					
 				} catch (Exception e2) {
-					msg.showMessageDialog(null, "Bitte füll das 'Runden' Feld mit einer Gültigen Zahl");
+					JOptionPane.showMessageDialog(null, "Bitte füll das 'Runden' Feld mit einer Gültigen Zahl");
 					e2.printStackTrace();
 					return;
 				}
 				this.dispose();
 			} else {
 				
-				msg.showMessageDialog(null, "Bitte überlege dir was für Werte du eingegeben hast.");
+				JOptionPane.showMessageDialog(null, "Bitte überlege dir was für Werte du eingegeben hast.");
 				
 			}
 				

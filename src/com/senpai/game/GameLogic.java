@@ -1,6 +1,5 @@
 package com.senpai.game;
 
-import java.io.File;
 import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -12,10 +11,7 @@ import javax.swing.JOptionPane;
 
 public class GameLogic extends JFrame {
 
-	private JOptionPane msg = new JOptionPane();
-
 	private int rounds = 0;
-	private int maxThrows = 5;
 	private boolean music = false;
 	private int playRounds = 5;
 	private Player[] player;
@@ -48,13 +44,11 @@ public class GameLogic extends JFrame {
 				audioIn = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource("bg.wav"));
 				 Clip clip = AudioSystem.getClip();
 				    clip.open(audioIn);
-				    clip.loop(clip.LOOP_CONTINUOUSLY);
+				    clip.loop(Clip.LOOP_CONTINUOUSLY);
 				    clip.start();
 			} catch (UnsupportedAudioFileException | IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (LineUnavailableException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}  
 		   
@@ -118,10 +112,10 @@ public class GameLogic extends JFrame {
 			}
 		}
 		if(!(_score < 1)) {
-			msg.showMessageDialog(null, "Spieler " + _id + " hat gewonnen mit einem Score von: " + _score + "!");
+			JOptionPane.showMessageDialog(null, "Spieler " + _id + " hat gewonnen mit einem Score von: " + _score + "!");
 			
 		}else {
-			msg.showMessageDialog(null, "Es gibt keine Gewinner");
+			JOptionPane.showMessageDialog(null, "Es gibt keine Gewinner");
 				
 		}
 		System.exit(0);

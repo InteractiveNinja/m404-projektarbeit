@@ -1,7 +1,5 @@
 package com.senpai.game;
 
-import java.awt.Color;
-import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -11,19 +9,17 @@ import javax.swing.JOptionPane;
 
 public class GameGUI extends JFrame implements ActionListener {
 
-	BackgroundScoreGUI gamegui;
+	private BackgroundScoreGUI gamegui;
 
-	JButton dice = new JButton();
-	JButton skip = new JButton();
-	JLabel dice_points_text = new JLabel();
-	JLabel rounds_left_text = new JLabel();
-	JOptionPane msg = new JOptionPane();
-	int playerid, dice_points;
-	int rounds_left = Main.game.getPlayRounds();
-	int rounds_counter = Main.game.getRounds();
-	int localscore = 0;
-	int roundsplayed = 0;
-	
+	private JButton dice = new JButton();
+	private JButton skip = new JButton();
+	private JLabel dice_points_text = new JLabel();
+	private JLabel rounds_left_text = new JLabel();
+	private int playerid, dice_points;
+	private int rounds_left = Main.game.getPlayRounds();
+	private int localscore = 0;
+	private int roundsplayed = 0;
+
 	public GameGUI(int _playerid, BackgroundScoreGUI gui) {
 
 		gamegui = gui;
@@ -33,7 +29,7 @@ public class GameGUI extends JFrame implements ActionListener {
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-		Container c = this.getContentPane();
+		this.getContentPane();
 
 		setSize(450, 240);
 
@@ -75,7 +71,6 @@ public class GameGUI extends JFrame implements ActionListener {
 		if (playerid == Main.game.getPlayerArray()[Main.game.getPlayerArray().length - 1].getPlayerId()) {
 			Main.game.setPlayedRound();
 			gamegui.updateText();
-	
 
 		}
 		gamegui.showScoresRound(playerid);
@@ -89,7 +84,7 @@ public class GameGUI extends JFrame implements ActionListener {
 
 			rounds_left--;
 			dice_points = Main.game.getRandom();
-			
+
 			Main.game.getPlayerArray()[playerid].getDiceScoreArray()[roundsplayed] = dice_points;
 			roundsplayed++;
 			if (Main.game.isNotOdd(dice_points)) {
@@ -99,7 +94,7 @@ public class GameGUI extends JFrame implements ActionListener {
 			} else {
 				localscore = 0;
 				Main.game.getPlayerArray()[playerid].killDiceScore();
-				msg.showMessageDialog(null, "Du hast " + dice_points + " Gewürfelt! Runde wird beendet");
+				JOptionPane.showMessageDialog(null, "Du hast " + dice_points + " Gewürfelt! Runde wird beendet");
 				endRound();
 
 			}
