@@ -40,11 +40,11 @@ public class GameGUI extends JFrame implements ActionListener {
 		setTitle("Spieler " + playerid);
 
 		setVisible(true);
-		Elements();
+		elements();
 
 	}
 
-	private void Elements() {
+	private void elements() {
 		dice.setText("Würfeln");
 		dice.setBounds(130, 100, 120, 30);
 		dice.addActionListener(this);
@@ -65,16 +65,16 @@ public class GameGUI extends JFrame implements ActionListener {
 
 	}
 
-	private void UpdateText() {
+	private void updateText() {
 		dice_points_text.setText("Würfel Wert: " + dice_points);
 		rounds_left_text.setText("Wüfel übrig: " + rounds_left);
 	}
 
-	private void Endgame() {
+	private void endRound() {
 		Main.game.getPlayerArray()[playerid].addScore(localscore);
 		if (playerid == Main.game.getPlayerArray()[Main.game.getPlayerArray().length - 1].getPlayerId()) {
 			Main.game.setPlayedRound();
-			gamegui.UpdateText();
+			gamegui.updateText();
 	
 
 		}
@@ -100,19 +100,19 @@ public class GameGUI extends JFrame implements ActionListener {
 				localscore = 0;
 				Main.game.getPlayerArray()[playerid].killDiceScore();
 				msg.showMessageDialog(null, "Du hast " + dice_points + " Gewürfelt! Runde wird beendet");
-				Endgame();
+				endRound();
 
 			}
 
-			UpdateText();
+			updateText();
 
 			if (rounds_left == 0) {
-				Endgame();
+				endRound();
 			}
 
 		}
 		if (e.getSource() == skip) {
-			Endgame();
+			endRound();
 		}
 
 	}

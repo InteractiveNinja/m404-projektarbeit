@@ -7,28 +7,28 @@ import javax.swing.JPanel;
 
 public class RoundPanel extends JPanel {
 
-	public RoundPanel(int playerid) {
+	public RoundPanel(int playerId) {
 		this.setLayout(null);
-		Player p = Main.game.getPlayerArray()[playerid];
-		JLabel lbl1 = new JLabel();
-		if (p.getDiceScoreArray() != null) {
-			String scoresText = "Spieler " + p.getPlayerId() + " ";
-			for (int i = 0; i < p.getDiceScoreArray().length; i++) {
-				scoresText = scoresText + " " + p.getDiceScoreArray()[i];
+		Player playerArray = Main.game.getPlayerArray()[playerId];
+		JLabel label = new JLabel();
+		if (playerArray.getDiceScoreArray() != null) {
+			String scoresText = "Spieler " + playerArray.getPlayerId() + " ";
+			for (int i = 0; i < playerArray.getDiceScoreArray().length; i++) {
+				scoresText = scoresText + " " + playerArray.getDiceScoreArray()[i];
 			}
-			scoresText = scoresText + " , Zeitiger Score " + p.getScore();
-			p.resetDiceScore();
-			lbl1.setText(scoresText);
-			lbl1.setBounds(10, 0, 300, 30);
-			add(lbl1);
+			scoresText = scoresText + " , Zeitiger Score " + playerArray.getScore();
+			playerArray.resetDiceScore();
+			label.setText(scoresText);
+			label.setBounds(10, 0, 300, 30);
+			add(label);
 
 			this.setBackground(Color.LIGHT_GRAY);
 		} else {
-			p.resetDiceScore();
-			lbl1.setText("Spieler " + p.getPlayerId()
-					+ " hat eine Ungerade Zahl gewürfelt, Score:" + p.getScore());
-			lbl1.setBounds(10, 0, 300, 30);
-			add(lbl1);
+			playerArray.resetDiceScore();
+			label.setText("Spieler " + playerArray.getPlayerId()
+					+ " hat eine Ungerade Zahl gewürfelt, Score:" + playerArray.getScore());
+			label.setBounds(10, 0, 300, 30);
+			add(label);
 
 			this.setBackground(Color.RED);
 		}

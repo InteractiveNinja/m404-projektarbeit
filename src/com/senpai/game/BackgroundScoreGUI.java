@@ -13,19 +13,19 @@ import javax.swing.JScrollPane;
 public class BackgroundScoreGUI extends JFrame implements ActionListener {
 
 	JButton dice = new JButton();
-	JLabel rounds_label = new JLabel();
+	JLabel roundsLabel = new JLabel();
 	JOptionPane msg = new JOptionPane();
-	private JPanel pnl1 = new JPanel();
-	private JScrollPane scrollpane = new JScrollPane(pnl1, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+	private JPanel backgroundPanel = new JPanel();
+	private JScrollPane scrollPane = new JScrollPane(backgroundPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 			JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-	int pannel_y = 0;
-	int currentplayer = Main.game.getCurrentPlayer();
+	int pannelY = 0;
+	int currentPlayer = Main.game.getCurrentPlayer();
 
 	public BackgroundScoreGUI() {
 
 		setLayout(null);
-		pnl1.setLayout(null);
-		Elements();
+		backgroundPanel.setLayout(null);
+		elements();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		setSize(450, 500);
@@ -34,17 +34,17 @@ public class BackgroundScoreGUI extends JFrame implements ActionListener {
 
 	}
 
-	void Elements() {
+	void elements() {
 		if (Main.game.getMusic()) {
 			Main.game.startMusic();
 		}
 
-		rounds_label.setText("Übrige Runden: " + Main.game.getRounds());
-		rounds_label.setBounds(130, 10, 120, 30);
-		add(rounds_label);
+		roundsLabel.setText("Übrige Runden: " + Main.game.getRounds());
+		roundsLabel.setBounds(130, 10, 120, 30);
+		add(roundsLabel);
 
-		scrollpane.setBounds(10, 60, 400, 350);
-		add(scrollpane);
+		scrollPane.setBounds(10, 60, 400, 350);
+		add(scrollPane);
 
 		dice.setText("Würfeln");
 		dice.setBounds(130, 420, 120, 30);
@@ -53,24 +53,24 @@ public class BackgroundScoreGUI extends JFrame implements ActionListener {
 
 	}
 
-	public void UpdateText() {
-		rounds_label.setText("Übrige Runden: " + Main.game.getRounds());
+	public void updateText() {
+		roundsLabel.setText("Übrige Runden: " + Main.game.getRounds());
 	}
 
 	public void showScoresRound(int plyid) {
 
 		RoundPanel panel = new RoundPanel(plyid); // neues Panel pro Runde
-		panel.setBounds(0, pannel_y, 450, 30);
-		pannel_y += 30; // y-Position des nächsten Runden Panels
-		pnl1.add(panel); // zum scrollbaren Panel hinzufügen
+		panel.setBounds(0, pannelY, 450, 30);
+		pannelY += 30; // y-Position des nächsten Runden Panels
+		backgroundPanel.add(panel); // zum scrollbaren Panel hinzufügen
 		this.repaint();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == dice) {
-			GameGUI window = new GameGUI(currentplayer, this);
-			currentplayer = Main.game.getCurrentPlayer();
+			GameGUI window = new GameGUI(currentPlayer, this);
+			currentPlayer = Main.game.getCurrentPlayer();
 
 			this.setEnabled(false);
 

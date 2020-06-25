@@ -15,14 +15,14 @@ public class GameLogic extends JFrame {
 	private JOptionPane msg = new JOptionPane();
 
 	private int rounds = 0;
-	private int max_throws = 5;
+	private int maxThrows = 5;
 	private boolean music = false;
-	private int play_rounds = 5;
+	private int playRounds = 5;
 	private Player[] player;
-	private int player_id = 1, player_count = 0;
+	private int playerId = 1, playerCount = 0;
 
 	public void createPlayers(int players) {
-		player_count = players;
+		playerCount = players;
 		player = new Player[players + 1];
 		for (int i = 1; i < players + 1; i++) {
 			player[i] = new Player(i);
@@ -32,12 +32,12 @@ public class GameLogic extends JFrame {
 	}
 
 	public int getCurrentPlayer() {
-		if (player_id == player_count) {
-			player_id = 1;
-			return player_count;
+		if (playerId == playerCount) {
+			playerId = 1;
+			return playerCount;
 		} else {
-			int send = player_id;
-			player_id++;
+			int send = playerId;
+			playerId++;
 			return send;
 		}
 
@@ -69,7 +69,7 @@ public class GameLogic extends JFrame {
 	}
 
 	public int getPlayRounds() {
-		return play_rounds;
+		return playRounds;
 	}
 
 	public void setRounds(int _rounds) {
