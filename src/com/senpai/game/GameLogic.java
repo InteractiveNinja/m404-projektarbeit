@@ -41,7 +41,7 @@ public class GameLogic extends JFrame {
 	public void startMusic()  {
 		    AudioInputStream audioIn;
 			try {
-				audioIn = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource("bg.wav"));
+				audioIn = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResource("sounds/bg.wav"));
 				 Clip clip = AudioSystem.getClip();
 				    clip.open(audioIn);
 				    clip.loop(Clip.LOOP_CONTINUOUSLY);

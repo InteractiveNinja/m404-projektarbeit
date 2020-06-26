@@ -2,6 +2,8 @@ package com.senpai.game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,27 +15,28 @@ public class GameGUI extends JFrame implements ActionListener {
 
 	private JButton dice = new JButton();
 	private JButton skip = new JButton();
-	private JLabel dice_points_text = new JLabel();
-	private JLabel rounds_left_text = new JLabel();
-	private int playerid, dice_points;
-	private int rounds_left = Main.game.getPlayRounds();
-	private int localscore = 0;
-	private int roundsplayed = 0;
+	private JLabel dicePointsText = new JLabel();
+	private JLabel roundsLeftText = new JLabel();
+	private int playerId, dicePoints;
+	private int roundsLeft = Main.game.getPlayRounds();
+	private int localScore = 0;
+	private int roundsPlayed = 0;
+	private ImageIcon icon;
 
-	public GameGUI(int _playerid, BackgroundScoreGUI gui) {
+	public GameGUI(int _playerId, BackgroundScoreGUI gui) {
 
 		gamegui = gui;
 		setLayout(null);
 
-		playerid = _playerid;
+		playerId = _playerId;
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		this.getContentPane();
 
-		setSize(450, 240);
+		setSize(450, 440);
 
-		setTitle("Spieler " + playerid);
+		setTitle("Spieler " + playerId);
 
 		setVisible(true);
 		elements();
@@ -42,38 +45,40 @@ public class GameGUI extends JFrame implements ActionListener {
 
 	private void elements() {
 		dice.setText("Würfeln");
-		dice.setBounds(130, 100, 120, 30);
+		dice.setBounds(130, 200, 120, 30);
 		dice.addActionListener(this);
 		add(dice);
 
 		skip.setText("Sichern");
-		skip.setBounds(130, 140, 120, 30);
+		skip.setBounds(130, 240, 120, 30);
 		skip.addActionListener(this);
 		add(skip);
 
-		rounds_left_text.setText("Wüfel übrig: " + rounds_left);
-		rounds_left_text.setBounds(130, 20, 120, 30);
-		add(rounds_left_text);
+		roundsLeftText.setText("Würfeln übrig: " + roundsLeft);
+		roundsLeftText.setBounds(140, 20, 120, 30);
+		add(roundsLeftText);
 
-		dice_points_text.setText("");
-		dice_points_text.setBounds(130, 50, 120, 30);
-		add(dice_points_text);
+		dicePointsText.setText("");
+		dicePointsText.setBounds(130, 50, 120, 110);
+		add(dicePointsText);
 
 	}
 
 	private void updateText() {
-		dice_points_text.setText("Würfel Wert: " + dice_points);
-		rounds_left_text.setText("Wüfel übrig: " + rounds_left);
+		icon = new ImageIcon(this.getClass().getClassLoader().getResource("imgs/"+dicePoints+".png"));
+		dicePointsText.setIcon(icon);
+		roundsLeftText.setText("Wüfel übrig: " + roundsLeft);
+		
 	}
 
 	private void endRound() {
-		Main.game.getPlayerArray()[playerid].addScore(localscore);
-		if (playerid == Main.game.getPlayerArray()[Main.game.getPlayerArray().length - 1].getPlayerId()) {
+		Main.game.getPlayerArray()[playerId].addScore(localScore);
+		if (playerId == Main.game.getPlayerArray()[Main.game.getPlayerArray().length - 1].getPlayerId()) {
 			Main.game.setPlayedRound();
 			gamegui.updateText();
 
 		}
-		gamegui.showScoresRound(playerid);
+		gamegui.showScoresRound(playerId);
 		gamegui.setEnabled(true);
 		this.dispose();
 	}
@@ -82,26 +87,26 @@ public class GameGUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == dice) {
 
-			rounds_left--;
-			dice_points = Main.game.getRandom();
+			roundsLeft--;
+			dicePoints = Main.game.getRandom();
 
-			Main.game.getPlayerArray()[playerid].getDiceScoreArray()[roundsplayed] = dice_points;
-			roundsplayed++;
-			if (Main.game.isNotOdd(dice_points)) {
+			Main.game.getPlayerArray()[playerId].getDiceScoreArray()[roundsPlayed] = dicePoints;
+			roundsPlayed++;
+			if (Main.game.isNotOdd(dicePoints)) {
 
-				localscore += dice_points;
+				localScore += dicePoints;
 
 			} else {
-				localscore = 0;
-				Main.game.getPlayerArray()[playerid].killDiceScore();
-				JOptionPane.showMessageDialog(null, "Du hast " + dice_points + " Gewürfelt! Runde wird beendet");
+				localScore = 0;
+				Main.game.getPlayerArray()[playerId].killDiceScore();
+				JOptionPane.showMessageDialog(null, "Du hast " + dicePoints + " Gewürfelt! Runde wird beendet");
 				endRound();
 
 			}
 
 			updateText();
 
-			if (rounds_left == 0) {
+			if (roundsLeft == 0) {
 				endRound();
 			}
 
